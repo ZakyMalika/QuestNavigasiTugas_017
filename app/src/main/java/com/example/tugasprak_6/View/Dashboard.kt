@@ -47,6 +47,9 @@ fun Dashboard(
           Text(text = stringResource(id = R.string.nim))
       }
 
+
+      Spacer(modifier = Modifier.height(30.dp))
+
   }
 
 
