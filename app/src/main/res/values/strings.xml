@@ -6,5 +6,15 @@
     <string name="nim">20230140017</string>
     <string name="masuk">Masuk</string>
 
+<!--  dashboard  -->
+    <string name="list">List Daftar Peserta</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="status_kawin">Status Perkawinan</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="alamat">Alamat</string>
+    <string name="beranda">Beranda</string>
+    <string name="formulir">Formulir</string>
+
+
 
 </resources>
