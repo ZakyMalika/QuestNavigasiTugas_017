@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">tugasprak_6</string>
 <!--    tampilan awal-->
-    <string name="welcome">Welcome </string>
+    <string name="welcome">Welcome, back!</string>
     <string name="nama">Muhammad Zaky Malika</string>
     <string name="nim">20230140017</string>
     <string name="masuk">Masuk</string>

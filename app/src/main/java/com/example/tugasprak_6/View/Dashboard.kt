@@ -38,7 +38,7 @@ fun Dashboard(
 ){
   Column(modifier = Modifier
       .fillMaxWidth()
-      .padding(top = 180.dp),
+      .padding(top = 150.dp),
       horizontalAlignment = Alignment.CenterHorizontally)
   {
     Text(text = stringResource(R.string.welcome),
@@ -72,7 +72,7 @@ fun Dashboard(
 
 
       }
-      Spacer(modifier = Modifier.height(20.dp))
+      Spacer(modifier = Modifier.height(30.dp))
 //      Button (
 //          modifier = Modifier.fillMaxWidth(1f)
 //              .padding(),
