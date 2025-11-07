@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,9 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasprak_6.R
+import org.intellij.lang.annotations.JdkConstants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,7 +84,14 @@ fun Dashboard(
               // navigating to another screen, or calling other functions.
           }
       ) {
-          Text(text = stringResource(id = R.string.masuk))
+          Text(text = stringResource(id = R.string.masuk),
+              Modifier
+//                  .fillMaxWidth()
+                  .width(200.dp),
+                      textAlign = TextAlign.Center
+//                  .height(30.dp)
+//                  .size(100.dp)
+              )
       }
 
 
