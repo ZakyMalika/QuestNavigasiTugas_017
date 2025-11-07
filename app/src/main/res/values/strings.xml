@@ -15,6 +15,9 @@
     <string name="beranda">Beranda</string>
     <string name="formulir">Formulir</string>
 
+<!--    Formulir-->
+    <string name="kembali">Kembali</string>
+    <string name="submit">Submit</string>
 
 
 </resources>
