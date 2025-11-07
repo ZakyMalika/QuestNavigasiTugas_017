@@ -144,13 +144,13 @@ fun DaftarPeserta(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = { /* TODO */ },
+                    onClick = {  },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                     border = BorderStroke(1.dp, Color.LightGray)
                 ) { Text("Beranda", color = Color.Black) }
 
                 Button(
-                    onClick = { /* TODO */ },
+                    onClick = {  },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                     border = BorderStroke(1.dp, Color.LightGray)
                 ) { Text("Formulir", color = Color.Black) }

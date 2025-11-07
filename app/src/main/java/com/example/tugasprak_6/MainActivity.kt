@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tugasprak_6.View.DaftarPeserta
 import com.example.tugasprak_6.View.Dashboard
+import com.example.tugasprak_6.View.Pendaftaran
 import com.example.tugasprak_6.ui.theme.Tugasprak_6Theme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Tugasprak_6Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DaftarPeserta(
+                    Pendaftaran(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
