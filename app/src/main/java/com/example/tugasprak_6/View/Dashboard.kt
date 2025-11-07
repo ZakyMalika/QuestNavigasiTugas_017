@@ -1,7 +1,9 @@
 package com.example.tugasprak_6.View
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -25,14 +27,14 @@ fun Dashboard(
     modifier: Modifier
 ){
   Column(modifier = Modifier
-      .padding(top = 200.dp, start = 110.dp),
-      horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement = Arrangement.Center)
+      .fillMaxWidth()
+      .padding(top = 200.dp),
+      horizontalAlignment = Alignment.CenterHorizontally)
   {
     Text(text = stringResource(R.string.welcome),
         fontSize = 40.sp)
   }
-
+//    gambar
 
 }
 
