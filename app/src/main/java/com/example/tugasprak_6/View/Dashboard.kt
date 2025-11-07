@@ -38,36 +38,41 @@ fun Dashboard(
 ){
   Column(modifier = Modifier
       .fillMaxWidth()
-      .padding(top = 200.dp),
+      .padding(top = 180.dp),
       horizontalAlignment = Alignment.CenterHorizontally)
   {
     Text(text = stringResource(R.string.welcome),
         fontSize = 40.sp)
 
-      Spacer(modifier = Modifier.height(100.dp))
+      Spacer(modifier = Modifier.height(10.dp))
+
+    Text(text = "Aplikasi Formulir Pendaftaran",
+          fontSize = 25.sp)
+
+      Spacer(modifier = Modifier.height(80.dp))
 //    gambar
-      val gambar1 = painterResource(id = R.drawable.me)
+      val gambar1 = painterResource(id = R.drawable.logo)
       Image(
           painter = gambar1,
           contentDescription = null,
           modifier = Modifier
-              .size(size = 150.dp)
+              .size(size = 250.dp)
               .padding(all = 1.dp)
               .clip(CircleShape)
       )
 
 //     identitas
-      Spacer(modifier = Modifier.height(10.dp))
+      Spacer(modifier = Modifier.height(80.dp))
       Column(modifier = Modifier
-          .fillMaxWidth()
-          .padding(top = 100.dp),
+          .fillMaxWidth(),
+//          .padding(top = 80.dp),
           horizontalAlignment = Alignment.CenterHorizontally) {
           Text(text = stringResource(id = R.string.nama))
           Text(text = stringResource(id = R.string.nim))
 
 
       }
-      Spacer(modifier = Modifier.height(30.dp))
+      Spacer(modifier = Modifier.height(20.dp))
 //      Button (
 //          modifier = Modifier.fillMaxWidth(1f)
 //              .padding(),
@@ -93,15 +98,6 @@ fun Dashboard(
 //                  .size(100.dp)
               )
       }
-
-
-
-
   }
-
-
-
-
-
 }
 
