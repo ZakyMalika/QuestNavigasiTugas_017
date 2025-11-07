@@ -1,5 +1,6 @@
 package com.example.tugasprak_6.View
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +9,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -40,6 +47,9 @@ fun Pendaftaran(modifier: Modifier){
     var Alamat by remember { mutableStateOf("") }
     var JK by remember { mutableStateOf("") }
 
+//    untuk dropdown
+    var expanded by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -52,10 +62,9 @@ fun Pendaftaran(modifier: Modifier){
 
         Text(
             text = stringResource(id = R.string.nama_lengkap),
-            fontSize = 35.sp,
+            fontSize = 25.sp,
             color = Color.Black
         )
-
         OutlinedTextField(
             value = textNama,
             singleLine = true,
@@ -67,6 +76,11 @@ fun Pendaftaran(modifier: Modifier){
             onValueChange = { textNama = it }
         )
 
+        Text(
+            text = stringResource(id = R.string.jenis_kelamin),
+            fontSize = 15.sp,
+            color = Color.Black
+        )
         Row {
             gender.forEach { item ->
                 Row(
@@ -82,10 +96,52 @@ fun Pendaftaran(modifier: Modifier){
             }
         }
 
+        Text(
+            text = stringResource(id = R.string.status_kawin),
+            fontSize = 15.sp,
+            color = Color.Black
+        )
 //        ini buat dropdown
+        OutlinedTextField(
+            value = textAlamat,
+            singleLine = true,
+            shape = MaterialTheme.shapes.large,
+            modifier = Modifier
+                .width(350.dp)
+                .padding(top = 30.dp, start = 30.dp),
+            label = { Text(text = "Alamat") },
+            onValueChange = { textAlamat = it }
+        )
+
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
+            IconButton (onClick = { expanded = !expanded }) {
+                Icon(Icons.Default.MoreVert, contentDescription = "More options")
+            }
+            DropdownMenu (
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("Menikah") },
+                    onClick = { /* Do something... */ }
+                )
+                DropdownMenuItem(
+                    text = { Text("Belum Menikah") },
+                    onClick = { /* Do something... */ }
+                )
+            }
+        }
+
 
 //        nih baru alamat
-
+        Text(
+            text = stringResource(id = R.string.alamat),
+            fontSize = 15.sp,
+            color = Color.Black
+        )
         OutlinedTextField(
             value = textAlamat,
             singleLine = true,
