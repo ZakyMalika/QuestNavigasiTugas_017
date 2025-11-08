@@ -126,8 +126,8 @@ fun Pendaftaran(
                 .padding(horizontal = 30.dp, vertical = 30.dp)
         ) {
             OutlinedTextField(
-                value = KWN,
-                onValueChange = { KWN = it },
+                value = textKWN,
+                onValueChange = { textKWN = it },
                 label = { Text("Pilih Status Kawin") },
                 singleLine = true,
                 shape = MaterialTheme.shapes.large,
@@ -157,7 +157,7 @@ fun Pendaftaran(
                     DropdownMenuItem(
                         text = { Text(status) },
                         onClick = {
-                            KWN = status
+                            textKWN = status
                             expanded = false
                         }
                     )
