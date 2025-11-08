@@ -81,7 +81,8 @@ fun Pendaftaran(
     }
 
     Column (modifier = Modifier
-        .padding(top = 180.dp, start = 30.dp)
+        .fillMaxWidth()
+        .padding(top = 180.dp, start = 30.dp, end = 30.dp)
         ){
 
         Text(
