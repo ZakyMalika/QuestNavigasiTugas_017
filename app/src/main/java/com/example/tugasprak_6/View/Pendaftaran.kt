@@ -206,7 +206,7 @@ fun Pendaftaran(
                     Nama = textNama
                     Alamat = textAlamat
                     JK = textJK
-                    KWN=textKWN
+                    KWN= textKWN
                     showDialog = true
                 }
             ) {
@@ -257,8 +257,9 @@ fun Pendaftaran(
                                 color = Color.Gray
                             )
                             Text(
-                                text = JK    ,
-                                fontSize = 16.sp
+                                text = JK,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(bottom = 12.dp)
                             )
 
                             Text(
@@ -268,13 +269,14 @@ fun Pendaftaran(
                             )
                             Text(
                                 text = KWN,
-                                fontSize = 16.sp
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(bottom = 12.dp)
                             )
                         }
                     },
                     confirmButton = {
                         Button(
-                            onClick = { showDialog = false },
+                            onClick = onBeranda,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color.Blue
                             )
