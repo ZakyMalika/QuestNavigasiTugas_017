@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Tugasprak_6Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Pendaftaran(
+                    DataApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

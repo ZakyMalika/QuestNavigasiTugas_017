@@ -26,8 +26,9 @@ import com.example.tugasprak_6.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Dashboard(
-    OnMasukBtnClick:()-> Unit,
-    modifier: Modifier
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier
+
 ){
   Column(modifier = Modifier
       .fillMaxWidth()
@@ -66,23 +67,17 @@ fun Dashboard(
 
       }
       Spacer(modifier = Modifier.height(30.dp))
-      Button (
-          modifier = Modifier.fillMaxWidth(1f)
-              .padding(),
-          onClick = {OnMasukBtnClick()}
-      ) {
-          Text(stringResource(id = R.string.masuk))
 
-      }
 
-      Button(
-          onClick = {
-              // This code block will be executed when the button is clicked
-              println("Button clicked!")
-              // You can also perform other actions here, like updating UI state,
-              // navigating to another screen, or calling other functions.
-          }
-      ) {
+      Button( modifier = Modifier
+          .width(250.dp)
+
+
+          .padding(),
+          onClick = onNavigate
+      )
+
+       {
           Text(text = stringResource(id = R.string.masuk),
               Modifier
 //                  .fillMaxWidth()

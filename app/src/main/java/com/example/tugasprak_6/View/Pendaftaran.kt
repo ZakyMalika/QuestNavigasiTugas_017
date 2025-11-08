@@ -1,6 +1,5 @@
 package com.example.tugasprak_6.View
 
-import android.R.attr.checked
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -46,9 +44,9 @@ import com.example.tugasprak_6.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Pendaftaran(
-    onData:()-> Unit,
-    OnShow:()-> Unit,
-    modifier: Modifier){
+    onBeranda: () -> Unit,
+    modifier: Modifier = Modifier
+    ){
 
 
 
@@ -196,14 +194,14 @@ fun Pendaftaran(
 
             ) {
             Button(
-                onClick = {  },
+                onClick = onBeranda,
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 border = BorderStroke(1.dp, Color.LightGray)
             ) { Text("Beranda", color = Color.Black) }
 
             Button(
                 modifier = Modifier.width(250.dp),
-                enabled = textNama.isNotEmpty() && checked,
+
                 onClick = {
                     Nama = textNama
                     Alamat = textAlamat
