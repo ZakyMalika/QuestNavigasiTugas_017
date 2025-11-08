@@ -1,5 +1,6 @@
 package com.example.tugasprak_6.View
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -40,12 +42,15 @@ fun Pendaftaran(modifier: Modifier){
     var textNama by remember { mutableStateOf("") }
     var textAlamat by remember { mutableStateOf("") }
     var textJK by remember { mutableStateOf("") }
+    var textKWN by remember { mutableStateOf("") }
 
     val gender: List<String> = listOf("Laki-laki", "Perempuan")
+        val kawin: List<String> = listOf("Menikah", "Belum Menikah", "Malas Menikah")
 
     var Nama by remember { mutableStateOf("") }
     var Alamat by remember { mutableStateOf("") }
     var JK by remember { mutableStateOf("") }
+    var KWN by remember { mutableStateOf("") }
 
 //    untuk dropdown
     var expanded by remember { mutableStateOf(false) }
@@ -62,7 +67,7 @@ fun Pendaftaran(modifier: Modifier){
 
         Text(
             text = stringResource(id = R.string.nama_lengkap),
-            fontSize = 25.sp,
+            fontSize = 15.sp,
             color = Color.Black
         )
         OutlinedTextField(
@@ -102,36 +107,47 @@ fun Pendaftaran(modifier: Modifier){
             color = Color.Black
         )
 //        ini buat dropdown
-        OutlinedTextField(
-            value = textAlamat,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            modifier = Modifier
-                .width(350.dp)
-                .padding(top = 30.dp, start = 30.dp),
-            label = { Text(text = "Alamat") },
-            onValueChange = { textAlamat = it }
-        )
-
         Box(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(horizontal = 30.dp, vertical = 30.dp)
         ) {
-            IconButton (onClick = { expanded = !expanded }) {
-                Icon(Icons.Default.MoreVert, contentDescription = "More options")
-            }
-            DropdownMenu (
+            OutlinedTextField(
+                value = KWN,
+                onValueChange = { KWN = it },
+                label = { Text("Pilih Status Kawin") },
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                readOnly = true,
+                modifier = Modifier
+                    .width(350.dp)
+                    .clickable() { expanded = true },
+                trailingIcon = {
+                    IconButton(onClick = { expanded = !expanded }) {
+                        Icon(
+                            imageVector = if (expanded)
+                                Icons.Default.ArrowDropDown
+                            else
+                                Icons.Default.ArrowDropDown,
+                            contentDescription = "Dropdown icon"
+                        )
+                    }
+                }
+            )
+
+            DropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.width(350.dp)
             ) {
-                DropdownMenuItem(
-                    text = { Text("Menikah") },
-                    onClick = { /* Do something... */ }
-                )
-                DropdownMenuItem(
-                    text = { Text("Belum Menikah") },
-                    onClick = { /* Do something... */ }
-                )
+                kawin.forEach { status ->
+                    DropdownMenuItem(
+                        text = { Text(status) },
+                        onClick = {
+                            KWN = status
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
 
