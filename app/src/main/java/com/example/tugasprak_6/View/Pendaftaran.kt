@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -71,118 +73,134 @@ fun Pendaftaran(
 
     Column(
         modifier = Modifier
-//            .fillMaxWidth()
+            .fillMaxWidth()
             .padding(top = 100.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = stringResource(id = R.string.judul_formulir))
+    }
 
-        Spacer(modifier = Modifier.height(40.dp))
+    Column (modifier = Modifier
+        .padding(top = 180.dp, start = 30.dp)
+        ){
 
         Text(
             text = stringResource(id = R.string.nama_lengkap),
             fontSize = 15.sp,
             color = Color.Black
+
         )
+
+
         OutlinedTextField(
             value = textNama,
             singleLine = true,
             shape = MaterialTheme.shapes.large,
             modifier = Modifier
-                .width(350.dp)
-                .padding(top = 30.dp, start = 30.dp),
+                .width(350.dp),
             label = { Text(text = "Nama Lengkap") },
             onValueChange = { textNama = it }
         )
 
-        Text(
-            text = stringResource(id = R.string.jenis_kelamin),
-            fontSize = 15.sp,
-            color = Color.Black
-        )
-        Row {
-            gender.forEach { item ->
-                Row(
-                    modifier = Modifier.selectable(
-                        selected = textJK == item,
-                        onClick = { textJK = item }
-                    ),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    RadioButton(selected = textJK == item, onClick = { textJK = item })
-                    Text(item)
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Column {
+            Text(
+                text = stringResource(id = R.string.jenis_kelamin),
+                fontSize = 15.sp,
+                color = Color.Black
+            )
+            Row {
+                gender.forEach { item ->
+                    Row(
+                        modifier = Modifier.selectable(
+                            selected = textJK == item,
+                            onClick = { textJK = item }
+                        ),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(selected = textJK == item, onClick = { textJK = item })
+                        Text(item)
+                    }
                 }
             }
         }
 
-        Text(
-            text = stringResource(id = R.string.status_kawin),
-            fontSize = 15.sp,
-            color = Color.Black
-        )
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Column {
+            Text(
+                text = stringResource(id = R.string.status_kawin),
+                fontSize = 15.sp,
+                color = Color.Black
+            )
 //        ini buat dropdown
-        Box(
-            modifier = Modifier
-                .padding(horizontal = 30.dp, vertical = 30.dp)
-        ) {
-            OutlinedTextField(
-                value = textKWN,
-                onValueChange = { textKWN = it },
-                label = { Text("Pilih Status Kawin") },
-                singleLine = true,
-                shape = MaterialTheme.shapes.large,
-                readOnly = true,
-                modifier = Modifier
-                    .width(350.dp)
-                    .clickable() { expanded = true },
-                trailingIcon = {
-                    IconButton(onClick = { expanded = !expanded }) {
-                        Icon(
-                            imageVector = if (expanded)
-                                Icons.Default.ArrowDropDown
-                            else
-                                Icons.Default.ArrowDropDown,
-                            contentDescription = "Dropdown icon"
+            Box(
+
+            ) {
+                OutlinedTextField(
+                    value = textKWN,
+                    onValueChange = { textKWN = it },
+                    label = { Text("Pilih Status Kawin") },
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    readOnly = true,
+                    modifier = Modifier
+                        .width(350.dp)
+                        .clickable() { expanded = true },
+                    trailingIcon = {
+                        IconButton(onClick = { expanded = !expanded }) {
+                            Icon(
+                                imageVector = if (expanded)
+                                    Icons.Default.ArrowDropDown
+                                else
+                                    Icons.Default.ArrowDropDown,
+                                contentDescription = "Dropdown icon"
+                            )
+                        }
+                    }
+                )
+
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                    modifier = Modifier.width(350.dp)
+                ) {
+                    kawin.forEach { status ->
+                        DropdownMenuItem(
+                            text = { Text(status) },
+                            onClick = {
+                                textKWN = status
+                                expanded = false
+                            }
                         )
                     }
                 }
-            )
-
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier.width(350.dp)
-            ) {
-                kawin.forEach { status ->
-                    DropdownMenuItem(
-                        text = { Text(status) },
-                        onClick = {
-                            textKWN = status
-                            expanded = false
-                        }
-                    )
-                }
             }
-        }
 
 
 //        nih baru alamat
-        Text(
-            text = stringResource(id = R.string.alamat),
-            fontSize = 15.sp,
-            color = Color.Black
-        )
-        OutlinedTextField(
-            value = textAlamat,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            modifier = Modifier
-                .width(350.dp)
-                .padding(top = 30.dp, start = 30.dp),
-            label = { Text(text = "Alamat") },
-            onValueChange = { textAlamat = it }
-        )
+            Spacer(modifier = Modifier.height(30.dp))
+            Text(
+                text = stringResource(id = R.string.alamat),
+                fontSize = 15.sp,
+                color = Color.Black
+            )
+            OutlinedTextField(
+                value = textAlamat,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier
+                    .width(350.dp)
+                    ,
+                label = { Text(text = "Alamat") },
+                onValueChange = { textAlamat = it }
+            )
+        }
     }
+
+
+
     Box(Modifier.fillMaxSize()){
         Row(
             modifier = Modifier
@@ -200,7 +218,7 @@ fun Pendaftaran(
             ) { Text("Beranda", color = Color.Black) }
 
             Button(
-                modifier = Modifier.width(250.dp),
+
 
                 onClick = {
                     Nama = textNama
