@@ -10,18 +10,28 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasprak_6.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +40,8 @@ fun Dashboard(
     modifier: Modifier = Modifier
 
 ){
+    var isLoading by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
   Column(modifier = Modifier
       .fillMaxWidth()
       .padding(top = 150.dp),
@@ -69,24 +81,38 @@ fun Dashboard(
       Spacer(modifier = Modifier.height(30.dp))
 
 
-      Button( modifier = Modifier
-          .width(250.dp)
+      Button(
+          modifier = Modifier
+              .width(250.dp)
+              .padding(),
+// nonaktifin tombol klo lgi loading
+          enabled = !isLoading,
+          onClick = {
 
-
-          .padding(),
-          onClick = onNavigate
+              scope.launch {
+                  isLoading = true
+                  delay(3000L)
+                  onNavigate()
+              }
+          }
       )
+      {
 
-       {
-          Text(text = stringResource(id = R.string.masuk),
-              Modifier
-//                  .fillMaxWidth()
-                  .width(200.dp),
-                      textAlign = TextAlign.Center
-//                  .height(30.dp)
-//                  .size(100.dp)
+          if (isLoading) {
+              CircularProgressIndicator(
+                  modifier = Modifier.size(24.dp),
+                  color = MaterialTheme.colorScheme.onPrimary
               )
+          } else {
+              Text(text = stringResource(id = R.string.masuk),
+                  Modifier
+                      //.fillMaxWidth()
+                      .width(200.dp),
+                  textAlign = TextAlign.Center
+                  //.height(30.dp)
+                  //.size(100.dp)
+              )
+          }
       }
   }
 }
-

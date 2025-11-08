@@ -68,19 +68,7 @@ fun DaftarPeserta(
             "JENIS KELAMIN" to "Laki-laki",
             "STATUS PERKAWINAN" to "Belum Menikah keknya",
             "ALAMAT" to "Bantul, DIY"
-        ),
-        listOf(
-            "NAMA LENGKAP" to "Naruto",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Belum Menikah keknya",
-            "ALAMAT" to "Bantul, DIY"
-        ),
-        listOf(
-            "NAMA LENGKAP" to "Naruto",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Belum Menikah keknya",
-            "ALAMAT" to "Bantul, DIY"
-        ),
+        )
 
         )
     Box(modifier = Modifier.fillMaxSize()) {
