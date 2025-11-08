@@ -33,6 +33,8 @@ import com.example.tugasprak_6.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DaftarPeserta(
+    onBeranda:()-> Unit,
+    onFormulir:() -> Unit,
     modifier: Modifier
 ) {
     val allBiodata = listOf(
@@ -144,13 +146,13 @@ fun DaftarPeserta(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = {  },
+                    onClick = { onBeranda() },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                     border = BorderStroke(1.dp, Color.LightGray)
                 ) { Text("Beranda", color = Color.Black) }
 
                 Button(
-                    onClick = {  },
+                    onClick = { onFormulir() },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                     border = BorderStroke(1.dp, Color.LightGray)
                 ) { Text("Formulir", color = Color.Black) }

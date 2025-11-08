@@ -1,10 +1,15 @@
 package com.example.tugasprak_6.View
 
+import android.R.attr.checked
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,6 +18,9 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,7 +45,12 @@ import com.example.tugasprak_6.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Pendaftaran(modifier: Modifier){
+fun Pendaftaran(
+    onData:()-> Unit,
+    OnShow:()-> Unit,
+    modifier: Modifier){
+
+
 
     var textNama by remember { mutableStateOf("") }
     var textAlamat by remember { mutableStateOf("") }
@@ -55,9 +68,12 @@ fun Pendaftaran(modifier: Modifier){
 //    untuk dropdown
     var expanded by remember { mutableStateOf(false) }
 
+//    DIAGLO
+    var showDialog by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+//            .fillMaxWidth()
             .padding(top = 100.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -169,4 +185,109 @@ fun Pendaftaran(modifier: Modifier){
             onValueChange = { textAlamat = it }
         )
     }
+    Box(Modifier.fillMaxSize()){
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+
+            ) {
+            Button(
+                onClick = {  },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                border = BorderStroke(1.dp, Color.LightGray)
+            ) { Text("Beranda", color = Color.Black) }
+
+            Button(
+                modifier = Modifier.width(250.dp),
+                enabled = textNama.isNotEmpty() && checked,
+                onClick = {
+                    Nama = textNama
+                    Alamat = textAlamat
+                    JK = textJK
+                    KWN=textKWN
+                    showDialog = true
+                }
+            ) {
+                Text(text = stringResource(id = R.string.submit))
+            }
+
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    title = {
+                        Text(
+                            text = "Data Registrasi",
+                            fontSize = 22.sp,
+                            color = Color(0xFF3F51B5)
+                        )
+                    },
+                    text = {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Text(
+                                text = "Nama Lengkap:",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = Nama,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(bottom = 12.dp)
+                            )
+
+                            Text(
+                                text = "Alamat:",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = Alamat,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(bottom = 12.dp)
+                            )
+
+                            Text(
+                                text = "Jenis Kelamin:",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = JK    ,
+                                fontSize = 16.sp
+                            )
+
+                            Text(
+                                text = "Status Kawin:",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = KWN,
+                                fontSize = 16.sp
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = { showDialog = false },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Blue
+                            )
+                        ) {
+                            Text("OK")
+                        }
+                    }
+
+                )
+            }
+        }
+    }
+
 }
