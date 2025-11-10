@@ -1,6 +1,7 @@
 package com.example.tugasprak_6.View
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,9 +26,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.tugasprak_6.R
 
 
@@ -38,95 +43,166 @@ fun DaftarPeserta(
     modifier: Modifier = Modifier
 
 ) {
+    data class CardData(
+        val nama: String,
+        val gender: String,
+        val status: String,
+        val alamat: String
+    )
+
     val allBiodata = listOf(
-        listOf(
-            "NAMA LENGKAP" to "Akiyama Haruto",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Belum Menikah",
-            "ALAMAT" to "Shibuya, Tokyo"
+        CardData(
+            nama = "Akiyama Haruto",
+            gender = "Laki-laki",
+            status = "Belum Menikah",
+            alamat = "Shibuya, Tokyo"
         ),
-        listOf(
-            "NAMA LENGKAP" to "Sato Airi",
-            "JENIS KELAMIN" to "Perempuan",
-            "STATUS PERKAWINAN" to "Belum Menikah",
-            "ALAMAT" to "Osaka, Jepang"
+        CardData(
+            nama = "Sato Airi",
+            gender = "Perempuan",
+            status = "Belum Menikah",
+            alamat = "Osaka, Jepang"
         ),
-        listOf(
-            "NAMA LENGKAP" to "Tanaka Ren",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Menikah",
-            "ALAMAT" to "Yokohama, Kanagawa"
+        CardData(
+            nama = "Tanaka Ren",
+            gender = "Laki-laki",
+            status = "Menikah",
+            alamat = "Yokohama, Kanagawa"
         ),
-        listOf(
-            "NAMA LENGKAP" to "Zaky Malika",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Belum Menikah",
-            "ALAMAT" to "Kyoto, Jepang"
+        CardData(
+            nama = "Zaky Malika",
+            gender = "Laki-laki",
+            status = "Belum Menikah",
+            alamat = "Kyoto, Jepang"
         ),
-        listOf(
-            "NAMA LENGKAP" to "Naruto",
-            "JENIS KELAMIN" to "Laki-laki",
-            "STATUS PERKAWINAN" to "Belum Menikah keknya",
-            "ALAMAT" to "Bantul, DIY"
-        )
+        CardData(
+            nama = "Naruto",
+            gender = "Laki-laki",
+            status = "Belum Menikah keknya",
+            alamat = "Bantul, DIY"
+        ),
+        CardData(
+            nama = "Akiyama Haruto",
+            gender = "Laki-laki",
+            status = "Belum Menikah",
+            alamat = "Shibuya, Tokyo"
+        ),
 
         )
     Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = null,
+            contentScale = ContentScale.Crop, // agar memenuhi layar
+            modifier = Modifier.matchParentSize()
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 100.dp),
+                .padding(top = 80.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = stringResource(id = R.string.list))
+            Text(text = stringResource(id = R.string.list),
+                style = MaterialTheme.typography.labelMedium.copy(
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+                color = Color.Black
+            ))
 
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(20.dp)
             ) {
-                itemsIndexed(allBiodata) { index, biodata ->
-//                untuk biodatanya
+
+
+                itemsIndexed(allBiodata) { _, data ->
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))
-                            .background(color = Color.Gray)
+                            .background(Color.LightGray)
                             .padding(20.dp)
+                            .padding(bottom = 12.dp)
                     ) {
-                        biodata.chunked(2).forEach { rowItems ->
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                rowItems.forEach { (label, value) ->
-                                    Column(modifier = Modifier.weight(1f)) {
-                                        Text(
-                                            text = label,
-                                            style = MaterialTheme.typography.labelMedium.copy(
-                                                fontWeight = FontWeight.Bold,
-                                                color = Color.Blue
-                                            )
-                                        )
-                                        Text(
-                                            text = value,
-                                            style = MaterialTheme.typography.bodyMedium.copy(
-                                                color = Color.Black
-                                            )
-                                        )
-                                    }
-                                }
+//                      baris bertama nya
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "NAMA LENGKAP",
+                                    style = MaterialTheme.typography.labelMedium.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    )
+                                )
+                                Text(
+                                    text = data.nama,
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "JENIS KELAMIN",
+                                    style = MaterialTheme.typography.labelMedium.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    )
+                                )
+                                Text(
+                                    text = data.gender,
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black)
+                                )
                             }
                         }
-                    }
+//                        row baris kedua
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "STATUS",
+                                    style = MaterialTheme.typography.labelMedium.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    )
+                                )
+                                Text(
+                                    text = data.status,
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "ALAMAT",
+                                    style = MaterialTheme.typography.labelMedium.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.Black
+                                    )
+                                )
+                                Text(
+                                    text = data.alamat,
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black)
+                                )
+                            }
+                        }
 
+                    }
                     Spacer(modifier = Modifier.height(16.dp))
                 }
+
             }
         }
-            Row(
+
+
+                Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
@@ -149,3 +225,4 @@ fun DaftarPeserta(
 
         }
     }
+
